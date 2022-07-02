@@ -24,6 +24,10 @@ const listSchema = new mongoose.Schema({
 const Item = mongoose.model("Item", itemsSchema);
 const List = mongoose.model("List", listSchema);
 
+app.get("/favicon.ico", function (req, res) {
+  res.status(204).end();
+});
+
 // main todo list page
 app.get("/", function (req, res) {
   Item.find({}, function (err, foundItems) {
@@ -160,5 +164,5 @@ if (port == null || port == "") {
 }
 
 app.listen(port, function () {
-  console.log("Server has started successfuly.");
+  console.log("Server has started successfully.");
 });
