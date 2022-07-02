@@ -1,0 +1,55 @@
+<%- include("header"); %>
+
+<body>
+  <!-- Todo list title -->
+  <div class="box" id="heading">
+    <h1><%= listTitle %></h1>
+
+    <!-- new feature: a drop-down list of all created todo names -->
+    <div class="dropdown">
+      <span>My Todo Lists</span>
+      <div class="dropdown-content">
+        <a class="homeButton" href="/"><i class="fa-solid fa-house"></i></a
+        ><br />
+        <% allLists.forEach(function(list) { %>
+        <a href="/<%=list.name%>"><%= list.name %></a><br />
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Todo list items -->
+  <div class="box">
+    <% newListItems.forEach(function(item) { %>
+    <div class="item">
+      <input type="checkbox" />
+      <p><%= item.name %></p>
+      <!-- Delete button for each item -->
+      <form class="alignButton" action="<%= deleteRoute %>" method="post">
+        <button
+          class="deleteButton"
+          type="submit"
+          name="button"
+          value="<%= item._id %>"
+        >
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </form>
+    </div>
+    <% }) %>
+
+    <!-- Add new todo list items -->
+    <form class="item" action="<%= route %>" method="post">
+      <input
+        type="text"
+        maxlength="25"
+        name="newItem"
+        placeholder="New Item"
+        autocomplete="off"
+      />
+      <button type="submit" name="list" value="<%= listTitle %>">+</button>
+    </form>
+  </div>
+</body>
+
+<%- include("footer"); %>
