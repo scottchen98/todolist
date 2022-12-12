@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const _ = require("lodash");
 const mongoose = require("mongoose");
@@ -9,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.connect(
-  "mongodb+srv://admin-scott:Access123@cluster0.5mytelb.mongodb.net/todolistDB"
+  `mongodb+srv://admin-scott:${process.env.PASSWD}@cluster0.5mytelb.mongodb.net/todolistDB`
 );
 
 // define schema
